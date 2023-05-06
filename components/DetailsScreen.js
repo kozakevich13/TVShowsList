@@ -69,7 +69,7 @@ export default function DetailsScreen({ route }) {
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#0a192f',
     alignItems: 'center',
     paddingTop: 10,
   },
@@ -87,15 +87,18 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 10,
+    color:'#bbbbbb'
   },
   genres: {
     fontSize: 16,
     fontStyle: 'italic',
     marginBottom: 10,
+    color:'#bbbbbb'
   },
   rating: {
     fontSize: 16,
     marginBottom: 10,
+    color:'#bbbbbb'
   },
   linkButtonContainer: {
     alignSelf: 'flex-start',
@@ -105,13 +108,16 @@ const styles = StyleSheet.create({
   status: {
     fontSize: 16,
     marginBottom: 10,
+    color:'#bbbbbb'
   },
   schedule: {
     fontSize: 16,
     marginBottom: 10,
+    color:'#bbbbbb'
   },
   summary: {
     fontSize: 16,
     lineHeight: 24,
+    color:'#bbbbbb'
   },
 });
