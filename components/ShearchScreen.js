@@ -33,13 +33,14 @@ export default function ShearchScreen() {
 
   const renderItem = ({ item }) => (
     <ListItem
-      bottomDivider
-      onPress={() =>
-        navigation.navigate('Details', {
-          id: item.show.id,
-          name: item.show.name,
-        })
-      }
+        containerStyle={styles.listItem}
+        bottomDivider
+        onPress={() =>
+            navigation.navigate('Details', {
+            id: item.show.id,
+            name: item.show.name,
+            })
+        }
     >
       <Image
         style={styles.thumbnail}
@@ -47,8 +48,8 @@ export default function ShearchScreen() {
         resizeMode="contain"
       />
       <ListItem.Content>
-        <ListItem.Title>{item.show.name}</ListItem.Title>
-        <ListItem.Subtitle>{item.show.rating.average}</ListItem.Subtitle>
+        <ListItem.Title style={styles.listItemTitle} >{item.show.name}</ListItem.Title>
+        <ListItem.Subtitle style={styles.listItemSubtitle} >{item.show.rating.average}</ListItem.Subtitle>
       </ListItem.Content>
       <Icon name="chevron-right" />
     </ListItem>
@@ -64,6 +65,8 @@ export default function ShearchScreen() {
           handleSearch(text);
         }}
         value={searchQuery}
+        containerStyle={styles.searchBarStyle}
+        inputContainerStyle={styles.searchInputStyle}
       />
       <FlatList
         data={tvShows}
@@ -72,7 +75,7 @@ export default function ShearchScreen() {
         ListEmptyComponent={
           <View style={styles.emptyList}>
             {emptyListLabel === "Type the show's name" ? (
-              <MaterialIcons name="tv" size={50} color="#bbb" />
+              <MaterialIcons name="tv" size={50} color="#bbbbbb" />
             ) : null}
             <ListItem.Title style={styles.emptyListText}>{emptyListLabel}</ListItem.Title>
           </View>
@@ -85,19 +88,37 @@ export default function ShearchScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#0a192f',
+    color: '#bbbbbb'
+  },
+  listItem: {
+    backgroundColor: '#0a192f',
+  },
+  listItemTitle: {
+    color: '#bbbbbb',
+  },
+  listItemSubtitle: {
+    color: '#70939e',
+  },
+  searchBarStyle: {
+    backgroundColor: '#0a192f',
+  },
+  searchInputStyle: {
+    color: '#bbbbbb',
   },
   emptyList: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     marginTop: 100,
+    color: '#bbbbbb'
   },
   emptyListText: {
     marginTop: 20,
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
+    color: '#bbbbbb'
   },
   searchbarContainer: {
     backgroundColor: '#fff',
