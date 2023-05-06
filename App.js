@@ -9,6 +9,10 @@ export default function App() {
   const [tvShows, setTvShows] = useState([]);
 
   const handleSearch = async (query) => {
+    if (query.length < 3) {
+      setTvShows([]);
+      return;
+    }
     try {
       const response = await axios.get(`https://api.tvmaze.com/search/shows?q=${query}`);
       const data = response.data;
