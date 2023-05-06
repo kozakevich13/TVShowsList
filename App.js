@@ -18,6 +18,7 @@ export default function App() {
         headerTitleStyle: {
           color: '#bbbbbb', 
         },
+        headerTintColor: '#ffffff', 
       }}
       >
         <Stack.Screen name="Shearch" component={ShearchScreen} />
