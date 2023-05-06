@@ -10,7 +10,16 @@ const Stack = createStackNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+       screenOptions={{
+        headerStyle: {
+          backgroundColor: '#0a192f', 
+        },
+        headerTitleStyle: {
+          color: '#bbbbbb', 
+        },
+      }}
+      >
         <Stack.Screen name="Shearch" component={ShearchScreen} />
         <Stack.Screen name="Details" component={DetailsScreen} />
       </Stack.Navigator>
