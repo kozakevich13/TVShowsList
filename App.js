@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, FlatList } from 'react-native';
+import { StyleSheet, View, FlatList, Image } from 'react-native';
 import { SearchBar, ListItem, Icon } from 'react-native-elements';
 import axios from 'axios';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -37,7 +37,13 @@ export default function App() {
           id: item.show.id,
           name: item.show.name,
         })
-      }>
+      }
+    >
+      <Image
+        style={styles.thumbnail}
+        source={{ uri: item.show.image?.medium }}
+        resizeMode="contain"
+      />
       <ListItem.Content>
         <ListItem.Title>{item.show.name}</ListItem.Title>
         <ListItem.Subtitle>{item.show.rating.average}</ListItem.Subtitle>
@@ -45,6 +51,7 @@ export default function App() {
       <Icon name="chevron-right" />
     </ListItem>
   );
+  
 
   return (
     <View style={styles.container}>
@@ -101,5 +108,10 @@ const styles = StyleSheet.create({
   },
   input: {
     fontSize: 16,
+  },
+  thumbnail: {
+    width: 50,
+    height: 50,
+    marginRight: 10,
   },
 });
