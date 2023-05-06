@@ -7,15 +7,22 @@ import { MaterialIcons } from '@expo/vector-icons';
 export default function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [tvShows, setTvShows] = useState([]);
+  const [emptyListLabel, setEmptyListLabel] = useState("Type the show's name");
 
   const handleSearch = async (query) => {
     if (query.length < 3) {
       setTvShows([]);
+      setEmptyListLabel("Type the show's name");
       return;
     }
     try {
       const response = await axios.get(`https://api.tvmaze.com/search/shows?q=${query}`);
       const data = response.data;
+      if (data.length === 0) {
+        setEmptyListLabel('Sorry, nothing found with this search');
+      } else {
+        setEmptyListLabel('');
+      }
       setTvShows(data);
     } catch (error) {
       console.error(error);
@@ -43,7 +50,7 @@ export default function App() {
     <View style={styles.container}>
       <SearchBar
         placeholder="Type the show's name"
-        onChangeText={text => {
+        onChangeText={(text) => {
           setSearchQuery(text);
           handleSearch(text);
         }}
@@ -55,12 +62,10 @@ export default function App() {
         keyExtractor={(item) => item.show.id.toString()}
         ListEmptyComponent={
           <View style={styles.emptyList}>
-            <MaterialIcons name="tv" size={50} color="#bbb" />
-            <ListItem.Title style={styles.emptyListText}>
-              {tvShows.length === 0
-                ? 'Type the show name to search'
-                : 'Sorry, nothing found with this search'}
-            </ListItem.Title>
+            {emptyListLabel === "Type the show's name" ? (
+              <MaterialIcons name="tv" size={50} color="#bbb" />
+            ) : null}
+            <ListItem.Title style={styles.emptyListText}>{emptyListLabel}</ListItem.Title>
           </View>
         }
       />
